@@ -141,21 +141,21 @@ func (kmeans *KMeans) AddPoints(points [][]float64) {
 	kmeans.points = append(kmeans.points, floatss2Vector(points)...)
 }
 
-func (kmeans *KMeans) Centers() []float64 {
-	centers := make([]float64, 0)
+func (kmeans *KMeans) Centers() [][]float64 {
+	centers := make([][]float64, 0)
 
 	for _, cluster := range kmeans.clusters {
-		centers = append(centers, vector2Floats(cluster.Center)...)
+		centers = append(centers, vector2Floats(cluster.Center))
 	}
 	return centers
 }
 
-func (kmeans *KMeans) Vectors() [][]float64 {
+func (kmeans *KMeans) Vectors() [][][]float64 {
 
-	vectors := make([][]float64, 0)
+	vectors := make([][][]float64, 0)
 	for _, cluster := range kmeans.clusters {
 
-		vectors = append(vectors, vectors2floatss(cluster.Vectors)...)
+		vectors = append(vectors, vectors2floatss(cluster.Vectors))
 	}
 	return vectors
 }

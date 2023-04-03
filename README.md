@@ -1,4 +1,6 @@
 # kMeans
 
 ## install
-`go get github.com/murinj/kMeans`
+`go get github.com/murInj/kMeans`
+
+now is kmeans++

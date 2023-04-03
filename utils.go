@@ -1,4 +1,4 @@
-package main
+package kmeans
 
 func floats2Vector(floats []float64) Vector {
 	v := make(Vector, len(floats))

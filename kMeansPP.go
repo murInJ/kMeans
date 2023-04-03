@@ -79,7 +79,7 @@ func KMeansPP(points []Vector, k int, iter int) []cluster {
 	// Step 4: Run the iterative algorithm
 	cnt := 0
 	for {
-		if cnt > iter {
+		if cnt > iter && iter != 0 {
 			break
 		}
 		cnt++

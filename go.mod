@@ -1,3 +1,3 @@
-module github.com/murinj/kMeans
+module github.com/murInj/kMeans
 
 go 1.18

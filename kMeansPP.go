@@ -7,6 +7,20 @@ import (
 
 type Vector []float64
 
+func floats2Vector(floats []float64) Vector {
+	v := make(Vector, len(floats))
+	copy(v, floats)
+	return v
+}
+
+func floatss2Vector(floats [][]float64) []Vector {
+	vectors := make([]Vector, len(floats))
+	for i, floats := range floats {
+		vectors[i] = floats2Vector(floats)
+	}
+	return vectors
+}
+
 // 计算两个向量之间的欧几里得距离
 func (b Vector) euclideanDistance(a Vector) float64 {
 	if len(a) != len(b) {
@@ -48,15 +62,16 @@ type KMeans struct {
 	k        int
 }
 
-func NewKmeans(points []Vector, k int) *KMeans {
+func NewKmeans(points [][]float64, k int) *KMeans {
 	kmeans := &KMeans{
-		points:   points,
+		points:   floatss2Vector(points),
 		k:        k,
 		clusters: make([]Cluster, k),
 	}
 	kmeans.initCluster()
 	return kmeans
 }
+
 func (kmeans *KMeans) initCluster() {
 	// Step 1: Choose the first center uniformly at random
 	centers := make([]Vector, kmeans.k)
@@ -136,6 +151,6 @@ func (kmeans *KMeans) Train(iter int) []Cluster {
 	return kmeans.clusters
 }
 
-func (kmeans KMeans) AddPoints(points []Vector) {
-	kmeans.points = append(kmeans.points, points...)
+func (kmeans KMeans) AddPoints(points [][]float64) {
+	kmeans.points = append(kmeans.points, floatss2Vector(points)...)
 }
